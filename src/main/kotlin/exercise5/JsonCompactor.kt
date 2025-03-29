@@ -6,9 +6,9 @@ sealed class JsonCompactor {
 }
 
 data class InQuotes(override val jsonCompacted: String) : JsonCompactor() {
-    override fun compact(c: Char): JsonCompactor = when {
-        c == '\\' -> Escaped(jsonCompacted + c)
-        c == '"' -> OutQuotes(jsonCompacted + c)
+    override fun compact(c: Char): JsonCompactor = when (c) {
+        '\\' -> Escaped(jsonCompacted + c)
+        '"' -> OutQuotes(jsonCompacted + c)
         else -> InQuotes(jsonCompacted + c)
     }
 }
