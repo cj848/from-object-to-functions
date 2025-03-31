@@ -11,8 +11,8 @@ class DiscardUnlessTest {
         val itemInProgress = ToDoItem("doing something", status = ToDoStatus.InProgress)
         val itemBlocked = ToDoItem("must do something", status = ToDoStatus.Blocked)
 
-        expectThat(itemInProgress.discardUnless { it.status == ToDoStatus.InProgress }).isEqualTo(itemInProgress)
-        expectThat(itemBlocked.discardUnless { it.status == ToDoStatus.InProgress }).isEqualTo(null)
+        expectThat(itemInProgress.discardUnless { status == ToDoStatus.InProgress }).isEqualTo(itemInProgress)
+        expectThat(itemBlocked.discardUnless { status == ToDoStatus.InProgress }).isEqualTo(null)
     }
 
     @Test
