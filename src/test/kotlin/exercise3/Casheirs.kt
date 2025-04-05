@@ -7,21 +7,22 @@ import exercise3.Item.milk
 typealias CasherDDT = DomainDrivenTest<CashierActions>
 
 class CashierDomainActions() : CashierActions {
-    private val casher = Cashier()
+    private val cashier = Cashier()
     override fun setupPrices(prices: Map<Item, Double>) {
-        casher.setupPrices(prices)
+        cashier.clear()
+        cashier.setupPrices(prices)
     }
 
     override fun totalFor(actorName: String): Double {
-        return casher.totalFor(actorName)
+        return cashier.totalFor(actorName)
     }
 
     override fun addItems(actorName: String, qty: Int, item: Item) {
-        casher.addItems(actorName, qty, item)
+        cashier.addItems(actorName, qty, item)
     }
 
     override fun setup3x2(item: Item) {
-        casher.setup3x2(item)
+        cashier.setup3x2(item)
     }
 
     override val protocol: DdtProtocol

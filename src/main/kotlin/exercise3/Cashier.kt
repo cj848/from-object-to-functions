@@ -14,10 +14,13 @@ class Cashier {
 
     fun totalFor(actorName: String): Double {
         return actorNameItemQuantities[actorName]?.let {
-            it.map { (key, value) ->
-                val newValue = value.takeIf { discount3x2 == key }?.let { it - floor(it / 3f).toDouble() } ?: value.toDouble()
-                prices[key]!!.toDouble() *  newValue
-            }.sum()
+            it.asSequence()
+                .map { (key, value) ->
+                    val newValue = value.takeIf { discount3x2 == key }
+                        ?.let { it - floor(it / 3f).toDouble() }
+                        ?: value.toDouble()
+                    prices[key]!!.toDouble() * newValue
+                }.sum()
         } ?: 0.0
     }
 
@@ -29,5 +32,10 @@ class Cashier {
 
     fun setup3x2(item: Item) {
         discount3x2 = item
+    }
+
+    fun clear() {
+        actorNameItemQuantities.clear()
+        discount3x2 = null
     }
 }
