@@ -8,8 +8,8 @@ data class Person(
     val email: String
 )
 
-class EmailTemplate(private val templateText: String) : (Person) -> String {
-    override fun invoke(aPerson: Person): String {
+class EmailTemplate(private val templateText: String) : (Person) -> String? {
+    override fun invoke(aPerson: Person): String? {
         return renderTemplate(templateText, mapOf("name" tag aPerson.name, "email" tag aPerson.email))
     }
 }

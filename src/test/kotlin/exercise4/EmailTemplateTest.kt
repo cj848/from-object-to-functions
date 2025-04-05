@@ -12,8 +12,8 @@ class EmailTemplateTest {
             """.trimMargin()
         val template = EmailTemplate(
             """
-            Hello {name}
-            Your email is {email}
+            Hello { name }
+            Your email is { email }
         """.trimIndent()
         )
         expectThat(
