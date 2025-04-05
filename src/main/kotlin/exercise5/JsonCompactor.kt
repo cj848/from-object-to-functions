@@ -29,9 +29,7 @@ data class Escaped(override val jsonCompacted: String) : JsonCompactor() {
     }
 }
 
-fun compactJson(input: String): String {
-    val compacted: JsonCompactor = OutQuotes("")
-    return input.fold(compacted) { acc, c ->
+fun compactJson(input: String): String =
+    input.fold(OutQuotes("")) { acc: JsonCompactor, c ->
         acc.compact(c)
     }.jsonCompacted
-}
