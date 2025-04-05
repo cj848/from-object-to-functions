@@ -13,7 +13,7 @@ tailrec fun renderTemplate(template: String, data: Map<String, StringTag>, str: 
     } else {
         if (template[index] == '{') {
             val endIndex = template.indexOf('}', index+1).takeIf { it != -1 } ?: return null
-            val tag = template.substring(index + 1, endIndex)
+            val tag = template.substring(index + 1, endIndex).trim()
             str.append(data[tag]?.text ?: return null)
             return renderTemplate(template, data, str, endIndex + 1)
         } else {
